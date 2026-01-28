@@ -6,7 +6,9 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        checkout scm
+        //checkout scm
+        https://github.com/usuario/springboot-app.git
+
       }
     }
     stage('Build & Test') {
