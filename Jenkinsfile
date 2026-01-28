@@ -6,25 +6,23 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        //checkout scm
-        https://github.com/usuario/springboot-app.git
-
+        git branch: 'main', url: 'https://github.com/usuario/springboot-app.git'
       }
     }
     stage('Build & Test') {
       steps {
-        sh 'mvn -B clean package'
+        bat 'mvn -B clean package'
       }
     }
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t $IMAGE_NAME .'
+        bat 'docker build -t %IMAGE_NAME% .'
       }
     }
     stage('Run Container') {
       steps {
-        sh 'docker rm -f demo-ci-cd || true'
-        sh 'docker run -d --name demo-ci-cd -p 8080:8080 $IMAGE_NAME'
+        bat 'docker rm -f demo-ci-cd || true'
+        bat 'docker run -d --name demo-ci-cd -p 8080:8080 %IMAGE_NAME%'
       }
     }
   }
