@@ -18,7 +18,8 @@ pipeline {
         }
         stage('Build & Test') {
             steps {
-                sh 'mvn -B clean package'
+                       sh 'docker run --rm -v $PWD:/app -w /app maven:3.9.2-eclipse-temurin-17 mvn -B clean package'
+
             }
         }
         stage('Build Docker Image') {
