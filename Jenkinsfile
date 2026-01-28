@@ -7,6 +7,7 @@ pipeline {
     stage('Checkout') {
       steps {
         git branch: 'main', url: 'https://github.com/usuario/springboot-app.git'
+         credentialsId: 'github-token'
       }
     }
     stage('Build & Test') {
